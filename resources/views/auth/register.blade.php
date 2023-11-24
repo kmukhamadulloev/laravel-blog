@@ -39,7 +39,6 @@
         </div>
 
         <div>
-            <input type="hidden" name="g-recaptcha-response" id="g-recaptcha-response">
             <x-input-error :messages="$errors->get('g-recaptcha-response')" class="mt-2" />
         </div>
 

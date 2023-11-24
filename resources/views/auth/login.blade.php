@@ -2,7 +2,7 @@
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
 
-    <form method="POST" action="{{ route('login') }}">
+    <form method="POST" action="{{ route('login') }}" id="login">
         @csrf
 
         <!-- Email Address -->
@@ -39,9 +39,17 @@
                 </a>
             @endif
 
-            <x-primary-button class="ms-3">
+            <x-primary-button class="ms-3 g-recaptcha" data-sitekey="{{ config('services.recaptcha.key')}}" data-callback='onSubmit'
+            data-action='login'>
                 {{ __('Log in') }}
             </x-primary-button>
         </div>
     </form>
+    @push('scripts')
+        <script>
+            function onSubmit(token) {
+                document.getElementById("login").submit();
+            }
+        </script>
+    @endpush
 </x-guest-layout>
